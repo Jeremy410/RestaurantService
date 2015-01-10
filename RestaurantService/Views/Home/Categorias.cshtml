@@ -1,0 +1,24 @@
+﻿@model IEnumerable<RestaurantService.Models.Categoria>
+@{
+    ViewBag.Title = "Categorias";
+}
+<style>
+    #platos {
+        box-shadow: inset 0px -4px 0px 0px #6c6a6a;
+    }
+</style>
+<h4></h4>
+<div id="divCategoria">
+    <center>
+        @foreach(var categoria in Model){
+            <div>
+                <h2>@categoria.Nombre</h2>
+                <img class="shadowImagenes" src="@categoria.Portada" width="200" height="150"/>
+                <h4></h4>
+                @Html.ActionLink("Ver Más", "DetalleCategoria", "Detalle", new { Categoria = @categoria.Id}, new { @class = "href" })
+            </div>
+        }  
+    </center>
+</div>
+<hr />
+

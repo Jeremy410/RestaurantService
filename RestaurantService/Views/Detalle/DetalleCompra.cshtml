@@ -1,0 +1,89 @@
+﻿@model IEnumerable<RestaurantService.Models.Detalle_Pedido>
+
+@{
+    ViewBag.Title = "DetalleCompra";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Styles.Render("~/Content/Detalle de Compra/DataTables-1.10.0/media/css/jquery.dataTables.css")
+@Scripts.Render("~/Content/Detalle de Compra/DataTables-1.10.0/media/js/jquery.js")
+@Scripts.Render("~/Content/Detalle de Compra/DataTables-1.10.0/media/js/jquery.dataTables.js")
+<h3></h3>
+<div id="divCompra">
+    <table id="tablaDetalle" class="display">
+        <thead>
+            <tr>
+                <th>Comida</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>SubTotal Total</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+             @foreach(var item in Model)
+             {
+                <tr>
+                    <td>@item.IdComida</td>
+
+                    <td> <input type="number" id="txtCantidad_@item.IdComida" onchange="calcularPrecio('@item.IdComida')" onkeyup="calcularPrecio('@item.IdComida')" value="@item.Cantidad" /> </td>
+
+                    <td>RD$@item.Precio</td>
+
+                    <td><span id="txtPrecioTotal_@item.IdComida" title="@item.PrecioTotal">RD$@item.PrecioTotal</span></td>
+
+                    <td> <a href="/Detalle/Save">
+                            <img src="~/Content/imagenes/btnSave.png"/>
+                        </a>
+                    </td>
+
+                    <td  onclick = "return confirm('Seguro que deseas borrar esta fila?')">
+                        <a href="/Detalle/Delete?IdComida=@item.IdComida">
+                            <img src="~/Content/imagenes/btnDelete.png" />
+                        </a>
+                    </td>
+
+                 </tr>
+             }
+        </tbody>
+    </table>
+    <hr />
+</div>
+<hr />
+<script>
+    $(document).ready(function () {
+        $('#tablaDetalle').DataTable();
+    });
+</script>
+<script>
+
+    function calcularPrecio(IdCantidad) {
+      
+        var txtPrecioTotal = document.getElementById('txtPrecioTotal_'+ IdCantidad);
+        var precioTotal = parseFloat(txtPrecioTotal.title);
+        var cantidad = document.getElementById('txtCantidad_' + IdCantidad).value;
+        var resultado = cantidad * precioTotal;
+
+        if (isNaN(resultado)) {
+            txtPrecioTotal.innerHTML = precioTotal;
+            document.getElementById('txtCantidad_' + IdCantidad).value = 1;
+        }
+        else if ((resultado) <= 0) {
+            txtPrecioTotal.innerHTML = precioTotal;
+            document.getElementById('txtCantidad_' + IdCantidad).value = 1;
+        }
+        else {
+            txtPrecioTotal.innerHTML = resultado;
+        }
+            
+
+    }
+</script>
+
+
+
+
+
+
+

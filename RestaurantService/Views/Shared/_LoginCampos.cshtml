@@ -1,0 +1,14 @@
+﻿
+
+
+<form method="post" action="../Home">
+    <div id="login" style="margin-top:4%;">
+        <h5>Usuario</h5> <input type="text" name="usuario" />
+        <h5>Contraseña</h5><input type="password" name="contrasena" />
+    </div>
+
+    <input type="submit" value="Iniciar sesion" id="loginButton" />
+    @Html.ActionLink("Registrarme", "Registrar", "Datos", false, new { @class = "registrarme" })
+</form>
+<h5 style="color:red; font-weight: 500;">@ViewBag.Error</h5>
+

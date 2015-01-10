@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RestaurantService.Models.Comida>
+@{
+    ViewBag.Title = "DetalleCategoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.Title = "Categorias";
+}
+<h4></h4>
+<div id="divCategoria">
+    <center>
+        @foreach(var comida in Model){
+            <div>
+                <h2>@comida.Nombre</h2>
+                <img class="shadowImagenes" src="@comida.Portada" width="200" height="150" />
+                <h1></h1>
+                <span id="span">@comida.Detalle</span>
+                <h4>RD$@comida.Precio</h4>
+                @if (Session["entrada"] == null)
+                {
+                    <h6 style="color:red; font-weight: 700;">Autenticarme para comprar.</h6>
+                }
+                else if (ViewData[Convert.ToString(comida.Id)] != null)
+                {
+                    <a class="hrefGris">Agregar al Carrito</a> 
+                    <img src="~/Content/imagenes/checked.png"/>
+                }
+                else
+                {
+                    @Html.ActionLink("Agregar al Carrito", "Comprar", "Detalle", new { Id = comida.Id, Precio = comida.Precio , Categoria = @ViewBag.Categoria }, new { @class = "href" })
+                }
+                
+
+            </div>
+        }
+    </center>
+</div>
+<hr />
+
+
+

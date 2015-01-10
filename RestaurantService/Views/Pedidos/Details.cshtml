@@ -1,0 +1,59 @@
+﻿@model RestaurantService.Models.Pedido
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmi.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Mensajero.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mensajero.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

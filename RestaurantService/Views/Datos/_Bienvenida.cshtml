@@ -1,0 +1,16 @@
+﻿
+
+
+<div id="bienvenida">
+    <h3>Bienvenido/a <span style="color: black; font-style:italic;">@ViewBag.usuario</span>,</h3>
+    @Html.ActionLink("Cerrar sesion", "Logout", "Datos",false, new { @class = "registrarme"})
+</div>
+
+@if((int)Session["TipoUsuario"] == 1)
+{
+    <span style="font-style: italic; margin-top: -2%;">Usted puede acceder a los @Html.ActionLink("Mantenimientos", "Mantenimientos","Administrador")</span> 
+}
+else if ((int)Session["TipoUsuario"] == 2)
+{
+    <span style="font-style: italic; margin-right: 8%;">Ver listado de @Html.ActionLink("Compras", "DetalleCompra", "Detalle")</span> 
+}
